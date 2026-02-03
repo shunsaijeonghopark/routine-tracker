@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Routine Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div>
+        <p class="eyebrow">Daily Routine Scores</p>
+        <h1>루틴 점수 트래커</h1>
+        <p class="subtitle">하루 동안 실행한 루틴을 점수화하고 날짜별 그래프로 확인하세요.</p>
+      </div>
+      <div class="summary" id="summary">
+        <div>
+          <span class="summary-label">오늘 평균 점수</span>
+          <span class="summary-value" id="todayAverage">0</span>
+        </div>
+        <div>
+          <span class="summary-label">오늘 총 루틴 수</span>
+          <span class="summary-value" id="todayCount">0</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h2>루틴 기록하기</h2>
+        <form id="routineForm" class="form">
+          <label>
+            날짜
+            <input type="date" id="routineDate" required />
+          </label>
+          <label>
+            루틴 이름
+            <input type="text" id="routineName" placeholder="예: 운동, 독서" required />
+          </label>
+          <label>
+            실행 점수
+            <div class="range-wrapper">
+              <input type="range" id="routineScore" min="0" max="100" value="70" />
+              <span id="scoreValue">70</span>
+            </div>
+          </label>
+          <button type="submit">루틴 저장</button>
+        </form>
+        <div class="divider"></div>
+        <h3 id="selectedDateTitle">선택된 날짜 루틴</h3>
+        <div id="routineList" class="routine-list"></div>
+      </section>
+
+      <section class="card">
+        <h2>날짜별 점수 그래프</h2>
+        <p class="chart-subtitle">날짜별 평균 점수를 라인 차트로 보여줍니다.</p>
+        <div class="chart-container">
+          <canvas id="scoreChart" height="220"></canvas>
+        </div>
+        <div class="stats" id="dateStats"></div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
